@@ -5,7 +5,7 @@
 
 generator client {
   provider = "prisma-client-js"
-//  output   = "../src/generated/prisma"
+  //  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -13,10 +13,10 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model usuario{
-  id Int @id @default(autoincrement())
+model usuario {
+  id       Int      @id @default(autoincrement())
   telefone String
-  senha String
-  nome String
-  data DateTime
+  senha    String
+  nome     String
+  data     DateTime
 }
