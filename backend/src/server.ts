@@ -1,5 +1,5 @@
 import express, {Request, Response, NextFunction, Router} from "express";
-import { router } from "./routes";
+import { router } from "./routes/user.routes";
 
 
 const app = express()
