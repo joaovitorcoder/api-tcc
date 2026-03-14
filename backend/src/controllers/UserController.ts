@@ -11,7 +11,7 @@ const buscarUser = async (req: Request, res: Response) => {
     }
 }
 
-//consultar usuario
+//consultar usuario por id
 const consultarUser = async (req: Request, res: Response) => {
     const id = Number(req.params.id)
     try {
@@ -45,7 +45,7 @@ const cadastrarUser = async (req: Request, res: Response) => {
     }
 }
 
-//deletar user  
+//deletar usuario por id 
 const deletarUser = async (req: Request, res: Response) => {
     const id = Number(req.params.id)
     try{
@@ -58,9 +58,30 @@ const deletarUser = async (req: Request, res: Response) => {
     }
 }
 
+//alterar usuario por id
+const alterarUser = async (req: Request, res: Response) => {
+    try{
+        const { id } = req.params
+        const { telefone, senha, nome, data } = req.body
+        const usuarioAtualizado = await prismaClient.usuario.update({
+            where: { id: Number(id) },  
+            data: {
+                telefone,
+                senha,
+                nome,
+                data: new Date(data)
+            }
+        })
+        res.json(usuarioAtualizado)
+    } catch (err: any) {
+        res.status(500).json({ erro: 'Erro ao alterar o usuario', detalhe: err.message })
+    }
+}
+
 export default {
     buscarUser,
     consultarUser,
     cadastrarUser,
-    deletarUser
+    deletarUser,
+    alterarUser
 }
