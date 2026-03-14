@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { enviarContato } from '../controllers/ContatoController'
+import ContatoController from '../controllers/ContatoController'
 
-const router = Router()
+const contatoRouter = Router()
 
-router.post('/contato', enviarContato)
+contatoRouter.post('/contato', ContatoController.enviarContato)
 
-export { router as ContatoRouter }
+export default contatoRouter
